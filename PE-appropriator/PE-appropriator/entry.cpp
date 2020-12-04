@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 	uint32_t counter = 0;
 
 	// Walk each byte in the file vector and pattern scan for the DOS header. (i == 2 because we want to skip the first DOS signature)
-	for (uint32_t i = 0; i < file_vector.size(); i++)
+	for (uint32_t i = 2; i < file_vector.size(); i++)
 	{
 		// Walk the signature
 		for (uint32_t u = 0; u < dos_signature.size(); u++)
@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
 				counter++;
 
 				// Log that a PE has been found
-				printf("[!] Found a PE. \n");
+				printf("[!] Located a PE\t");
 
 				// Cast the VA to a DOS header
 				PIMAGE_DOS_HEADER dos_header = reinterpret_cast<PIMAGE_DOS_HEADER>(reinterpret_cast<uint64_t>(base) + i);
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 				uint64_t size = Util::GetSizeOfPE(dos_header);
 
 				// Log the PE size
-				printf("Size: 0x%llx\n", size);
+				printf("Size:\t0x%llx\tRVA:\t0x%lx\n", size, i);
 
 				// Create a vector to store the PE 
 				std::vector<uint8_t> pe(file_vector.begin() + i, file_vector.begin() + i + size);
