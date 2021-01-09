@@ -1,5 +1,5 @@
 # PE-appropriator
-Reveals hidden PEs within a file
+Reveals hidden PEs within an image
 # 
 Searches for the DOS headers e_magic within the target binary. Calculates the size of the PE, then dumps the region of memory from the target binary for futher analysis or use.
 
