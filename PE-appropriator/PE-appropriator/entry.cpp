@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 	target.close();
 
 	// Store the DOS signature (basically the pattern for the pattern scan)
-	std::vector<uint8_t> dos_signature = { 0x4D, 0x5A, 0x90 };
+	std::vector<uint8_t> dos_signature = { 0x4D, 0x5A, 0x90, 0x00 };
 
 	// Create a counter to log how many PE's were found
 	uint32_t counter = 0;
